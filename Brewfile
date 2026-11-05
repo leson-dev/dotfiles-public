@@ -35,19 +35,6 @@ brew "apm"
 # React Native
 brew "watchman"
 
-cask "1password"
-cask "1password-cli"
-cask "ghostty"
-cask "google-chrome"
-cask "karabiner-elements"
-cask "zen"
-cask "numi"
-cask "raycast"
-cask "transmit"
-cask "sublime-text"
-cask "zed"
-cask "claude-code@latest"
-cask "chatgpt"
 
 # Fonts
 cask "font-plemol-jp-nf"
