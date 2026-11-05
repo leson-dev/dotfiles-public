@@ -18,14 +18,6 @@ set -gx PATH $PATH $ANDROID_HOME/emulator $ANDROID_HOME/tools $ANDROID_HOME/plat
 # React Native Editor
 set -xg REACT_EDITOR subl
 
-# Java
-set ANDROID_JAVA_HOME /Applications/Android\ Studio.app/Contents/jbr/Contents/Home
-if test -f $ANDROID_JAVA_HOME/bin/java
-    set -gx JAVA_HOME $ANDROID_JAVA_HOME
-else if test -f /usr/libexec/java_home
-    set -gx JAVA_HOME (/usr/libexec/java_home -v 17)
-end
-
 # inkdrop
 set -gx INKDROP_HOME ~/.inkdrop
 
