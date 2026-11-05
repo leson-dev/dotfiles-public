@@ -60,7 +60,6 @@ end
 --   - Filename (bold by default)
 --   - Modified files (uses MatchParen highlight)
 -- 4. Shows indicators - Appends a modified sign if the buffer is modified, and a readonly icon if the buffer is readonly
--- 5. Windows compatibility - Handles case-insensitive path matching on Windows
 
 ---@param opts? {relative: "cwd"|"root", modified_hl: string?, directory_hl: string?, filename_hl: string?, modified_sign: string?, readonly_icon: string?, length: number?}
 function M.pretty_path(opts)
@@ -88,17 +87,8 @@ function M.pretty_path(opts)
 		local cwd = normalize(get_cwd())
 		local root = opts.relative == "root" and get_root() or cwd
 
-		-- Case-insensitive matching on Windows
-		local path_lower = path:lower()
-		local root_lower = root:lower()
-		if vim.fn.has("win32") == 1 then
-			if path_lower:find(root_lower, 1, true) == 1 then
-				path = path:sub(#root + 2)
-			end
-		else
-			if path:find(root, 1, true) == 1 then
-				path = path:sub(#root + 2)
-			end
+		if path:find(root, 1, true) == 1 then
+			path = path:sub(#root + 2)
 		end
 
 		-- Split path into segments

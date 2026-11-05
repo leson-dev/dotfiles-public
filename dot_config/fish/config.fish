@@ -39,14 +39,7 @@ set -gx PATH $HOME/.cargo/bin $PATH
 
 set -l ROOT_PATH (dirname (status --current-filename))
 
-switch (uname)
-    case Darwin
-        source $ROOT_PATH/config-mac.fish
-    case Linux
-        source $ROOT_PATH/config-linux.fish
-    case '*'
-        source $ROOT_PATH/config-windows.fish
-end
+source $ROOT_PATH/config-mac.fish
 
 set LOCAL_CONFIG $ROOT_PATH/config-local.fish
 if test -f $LOCAL_CONFIG
