@@ -120,7 +120,11 @@ require("conform").setup({
 		},
 	},
 	format_on_save = function(bufnr)
-		if vim.b[bufnr].disable_autoformat then
+		local enabled = vim.b[bufnr].autoformat
+		if enabled == nil then
+			enabled = vim.g.autoformat
+		end
+		if not enabled then
 			return
 		end
 		return {

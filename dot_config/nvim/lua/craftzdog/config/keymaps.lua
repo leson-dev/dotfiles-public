@@ -34,8 +34,6 @@ keymap.set("n", "<C-m>", "<C-i>", opts)
 
 -- New tab
 keymap.set("n", "te", ":tabedit<CR>")
-keymap.set("n", "<tab>", ":tabnext<CR>", opts)
-keymap.set("n", "<s-tab>", ":tabprev<CR>", opts)
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)

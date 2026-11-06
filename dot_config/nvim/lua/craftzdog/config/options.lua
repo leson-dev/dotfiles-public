@@ -113,3 +113,6 @@ require("vim._core.ui2").enable({
 		pager = { height = 0.5 },
 	},
 })
+
+-- Format on save is opt-in: :ToggleFormatter turns it on per buffer
+vim.g.autoformat = false

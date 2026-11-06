@@ -150,10 +150,9 @@ Try it:
 | `+` / `-`                             | Increment and decrement numbers                                       |                                                                                    |
 | `<C-a>`                               | Selects all                                                           |                                                                                    |
 | `te`                                  | Opens a new tab                                                       |                                                                                    |
-| `Tab` / `Shift-Tab`                   | Cycle tabs                                                            |                                                                                    |
 | `ss` / `sv`                           | Split                                                                 | Short, home-row window control.                                                    |
 | `sh` `sj` `sk` `sl`                   | Move between windows                                                  | Short, home-row window control.                                                    |
-| `<C-m>`                               | Jumps forward in the jump list                                        | `<C-i>` is the same key as Tab in the terminal, and Tab is taken by tab switching. |
+| `<C-m>`                               | Jumps forward in the jump list                                        | Alias for `<C-i>`, which Tab-less terminals send as Tab.                           |
 | `<leader>o` / `<leader>O`             | Open a line below or above without continuing a comment (`o<Esc>^Da`) |                                                                                    |
 
 ### 1.9 Close hidden buffers
@@ -277,12 +276,12 @@ The _snacks.nvim_ picker.
 
 [Mason](https://github.com/mason-org/mason.nvim) + [mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) install on start, and never auto-update:
 
-- Servers: lua-language-server, vtsls, eslint-lsp, oxlint, tailwindcss-language-server, css-lsp, rust-analyzer, copilot-language-server
+- Servers: lua-language-server, vtsls, eslint-lsp, oxlint, tailwindcss-language-server, css-lsp, rust-analyzer, intelephense
 - Formatters: prettier, prettierd, oxfmt, stylua, shfmt
 
 [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) supplies defaults.
 
-- Servers are turned on with `vim.lsp.enable`: eslint, oxlint, lua_ls, cssls, vtsls, tailwindcss, rust_analyzer.
+- Servers are turned on with `vim.lsp.enable`: eslint, oxlint, lua_ls, cssls, vtsls, tailwindcss, rust_analyzer, intelephense.
 - Every server gets file-rename support (`didRename` / `willRename`).
 
 ### 5.2 Diagnostics look
@@ -309,6 +308,7 @@ Neovim 0.12 merges these automatically, so there's no setup boilerplate.
 - **lua_ls**: knows the Neovim runtime, shows param-type hints, silences a few noisy checks.
 - **cssls**: ignores empty rules.
 - **oxlint**: starts with `oxlint --lsp`.
+- **intelephense**: PHP; attaches to `php` buffers rooted at `composer.json`, and indexes the workspace in the background.
 
 ### 5.4 Completion
 
@@ -318,7 +318,7 @@ Neovim 0.12 merges these automatically, so there's no setup boilerplate.
 - Auto-brackets after functions. Docs pop up after **200 ms**.
 - Menu items are colorized by Treesitter, with kind icons from the shared icon set.
 - Ghost text is **off**.
-  - Copilot already shows inline suggestions, and two ghost texts would clash.
+
 - In the command line, the menu opens by itself for `:` commands only, with nothing preselected.
 
 ### 5.5 Pairs
@@ -327,7 +327,7 @@ Neovim 0.12 merges these automatically, so there's no setup boilerplate.
 
 ### 5.6 Formatting
 
-[conform.nvim](https://github.com/stevearc/conform.nvim) formats on save with a **1000 ms** timeout, falling back to the LSP.
+[conform.nvim](https://github.com/stevearc/conform.nvim) formats with a **500 ms** timeout, falling back to the LSP. Format on save is **off** by default (`vim.g.autoformat = false`).
 
 | Filetypes                                                          | Formatter                                              |
 | ------------------------------------------------------------------ | ------------------------------------------------------ |
@@ -338,7 +338,7 @@ Neovim 0.12 merges these automatically, so there's no setup boilerplate.
 
 - oxfmt runs only when the project has an oxfmt config, like `.oxfmtrc.json` or a Vite+ `vite.config.ts`.
   - Projects using prettier keep their own formatter.
-- `:ToggleFormatter` turns format-on-save off or back on for the current buffer, with a notification.
+- `:ToggleFormatter` turns format-on-save on or back off for the current buffer, with a notification.
   - The command lives in `config/commands.lua`.
 
 ### 5.7 LSP keymaps
@@ -422,31 +422,11 @@ Lazygit's own config lives in `~/.config/lazygit/config.yml`, outside the Neovim
 
 - [gitlinker.nvim](https://github.com/linrongbin16/gitlinker.nvim): `:GitLink` copies a GitHub URL for the current line, or the selected range.
 
-## 7. AI
-
-### 7.1 Copilot
-
-[copilot.lua](https://github.com/zbirenbaum/copilot.lua) with auto-trigger on, enabled in Markdown and help too.
-
-- Notes and docs benefit from suggestions as much as code does.
-- Requires `:Copilot auth` once.
-- On macOS, the terminal needs Option as Alt.
-
-The keys work in insert mode:
-
-| Keys              | Action                   |
-| ----------------- | ------------------------ |
-| `<C-l>`           | Accepts the suggestion   |
-| `Alt-l`           | Accepts a word           |
-| `Alt-Shift-l`     | Accepts a line           |
-| `Alt-]` / `Alt-[` | Cycle suggestions        |
-| `<C-]>`           | Dismisses the suggestion |
-
-## 8. Agentic coding
+## 7. Agentic coding
 
 These are small helpers for passing context from Neovim to an agent.
 
-### 8.1 Copy paths for agents
+### 7.1 Copy paths for agents
 
 | Keys         | Action                                                         | Notes                                       |
 | ------------ | -------------------------------------------------------------- | ------------------------------------------- |
@@ -456,7 +436,7 @@ These are small helpers for passing context from Neovim to an agent.
 - Both show the copied text in a notification.
   - Pasting the path into an agent's prompt points it at the exact line.
 
-### 8.2 Helper keymaps
+### 7.2 Helper keymaps
 
 | Keys                  | Action                                                                                    | Notes                                                                                                    |
 | --------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |

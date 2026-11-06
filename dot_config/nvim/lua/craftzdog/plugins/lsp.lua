@@ -14,8 +14,8 @@ require("mason-tool-installer").setup({
 		"oxfmt",
 		"tailwindcss-language-server",
 		"vtsls",
-		"copilot-language-server",
 		"rust-analyzer",
+		"intelephense",
 	},
 	auto_update = false,
 	run_on_start = true,
@@ -42,4 +42,5 @@ vim.lsp.enable({
 	"tailwindcss",
 	"glsl_analyzer",
 	"rust_analyzer",
+	"intelephense",
 })

@@ -158,14 +158,17 @@ end
 --- Enable or disable the current buffer's formatter
 function M.toggle_formatter()
 	local bufnr = vim.api.nvim_get_current_buf()
-	local disabled = vim.b[bufnr].disable_autoformat
+	local enabled = vim.b[bufnr].autoformat
+	if enabled == nil then
+		enabled = vim.g.autoformat
+	end
 
-	if disabled then
-		vim.b[bufnr].disable_autoformat = false
-		vim.notify("Formatter enabled for this buffer", vim.log.levels.INFO)
-	else
-		vim.b[bufnr].disable_autoformat = true
+	if enabled then
+		vim.b[bufnr].autoformat = false
 		vim.notify("Formatter disabled for this buffer", vim.log.levels.WARN)
+	else
+		vim.b[bufnr].autoformat = true
+		vim.notify("Formatter enabled for this buffer", vim.log.levels.INFO)
 	end
 end
 
