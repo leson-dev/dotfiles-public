@@ -1,7 +1,7 @@
 [extend]
 useDefault = true
 
-# Keybindings like herdr's key = "ctrl+shift+down" trip generic-api-key
+# Keybindings like key = "ctrl+shift+down" trip generic-api-key
 [[allowlists]]
 description = "keybindings"
 regexTarget = "line"

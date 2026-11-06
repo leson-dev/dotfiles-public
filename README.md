@@ -15,7 +15,6 @@ Check out my app called [Inkdrop](https://www.inkdrop.app/)
 Managed with [chezmoi](https://www.chezmoi.io/).
 
 - Neovim config
-- [herdr](https://herdr.dev/) config (terminal workspace manager for AI agents)
 - tmux config
 - Ghostty config
 - git and lazygit config
@@ -39,7 +38,6 @@ Managed with [chezmoi](https://www.chezmoi.io/).
 ## Terminal setup
 
 - [Ghostty](https://ghostty.org/) - Terminal emulator
-- [herdr](https://herdr.dev/) - Workspace manager for running AI coding agents side by side, with tmux-style keybindings (prefix `ctrl+t`)
 - [tmux](https://github.com/tmux/tmux) - Terminal multiplexer
 
 ### Fonts

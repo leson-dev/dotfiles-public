@@ -3,7 +3,6 @@ tap "heroku/brew"
 
 brew "fish"
 brew "tmux"
-brew "herdr"
 
 brew "gh"
 brew "lazygit"
