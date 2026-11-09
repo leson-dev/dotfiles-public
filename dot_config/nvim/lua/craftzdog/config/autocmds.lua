@@ -29,6 +29,32 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- Input source: English in normal mode, restore the previous one when inserting.
+-- "0" skips macism's temporary-window workaround, which steals focus and makes the terminal flicker.
+if vim.fn.executable("macism") == 1 then
+	local english = "com.apple.keylayout.ABC"
+	local saved
+	vim.api.nvim_create_autocmd("InsertLeave", {
+		group = augroup,
+		callback = function()
+			vim.system({ "macism" }, { text = true }, function(r)
+				saved = vim.trim(r.stdout or "")
+				if saved ~= "" and saved ~= english then
+					vim.system({ "macism", english, "0" })
+				end
+			end)
+		end,
+	})
+	vim.api.nvim_create_autocmd("InsertEnter", {
+		group = augroup,
+		callback = function()
+			if saved and saved ~= english then
+				vim.system({ "macism", saved, "0" })
+			end
+		end,
+	})
+end
+
 -- Custom filetypes
 vim.filetype.add({
 	extension = {

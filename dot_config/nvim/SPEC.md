@@ -139,6 +139,7 @@ Try it:
 
 - Yanked text flashes briefly.
 - Only the active window shows the cursorline.
+- Leaving insert mode switches the macOS input source to ABC via `macism`; entering insert mode restores the one in use before.
 
 ### 1.8 Core keymaps
 
